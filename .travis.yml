@@ -9,7 +9,7 @@ install:
   - pip install codecov # Install coveralls
 
 script:
-  - pytest tests --cov=tat_aws_creator_auto_tagger # Run unittest
+  - pytest tests --cov=tat_aws_creator_auto_tag # Run unittest
 
 notifications:
   email: false # Mute email notification

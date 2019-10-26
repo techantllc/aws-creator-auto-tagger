@@ -5,7 +5,7 @@ from pytest import raises, approx
 
 
 def test():
-    import tat_aws_creator_auto_tagger
+    import tat_aws_creator_auto_tag
     pass
 
 

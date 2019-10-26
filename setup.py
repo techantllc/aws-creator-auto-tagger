@@ -13,7 +13,7 @@ from datetime import date
 from setuptools import setup, find_packages
 
 # --- import your package ---
-import tat_aws_creator_auto_tagger as package
+import tat_aws_creator_auto_tag as package
 
 if __name__ == "__main__":
     # --- Automatically generate setup parameters ---

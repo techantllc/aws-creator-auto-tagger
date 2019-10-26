@@ -116,3 +116,59 @@ req-info: ## Show requirements information
 
 
 
+#--- AWS Lambda ---
+lbd-build-deploy-pkg: ## Build lambda deployment package
+	bash ./bin/lbd/build-lbd-deploy-pkg.sh
+
+
+lbd-build-layer: ## Build lambda layer
+	bash ./bin/lbd/build-lbd-layer.sh
+
+
+lbd-build-source: ## Build lambda source code
+	bash ./bin/lbd/build-lbd-source-code.sh
+
+
+lbd-build-everything: ## Build lambda deployment package, layer, and source code
+	bash ./bin/lbd/build-lbd-everything.sh
+
+
+lbd-upload-deploy-pkg: ## Upload lambda deployment package to s3
+	bash ./bin/lbd/upload-lbd-deploy-pkg.sh
+
+
+lbd-upload-layer: ## Upload lambda dependencies layer to s3
+	bash ./bin/lbd/upload-lbd-layer.sh
+
+
+lbd-upload-source: ## Upload lambda source code to s3
+	bash ./bin/lbd/upload-lbd-source.sh
+
+
+lbd-upload-everything: ## Upload lambda deployment package, layer, and source code to s3
+	bash ./bin/lbd/upload-lbd-everything.sh
+
+
+lbd-deploy-layer: ## Deploy lambda dependencies layer
+	bash ./bin/lbd/deploy-lbd-layer.sh
+
+
+lbd-build-upload-deploy-layer:
+	bash ./bin/lbd/build-lbd-layer.sh
+	bash ./bin/lbd/upload-lbd-layer.sh
+	bash ./bin/lbd/deploy-lbd-layer.sh
+
+
+lbd-bud-layer: lbd-build-upload-deploy-layer ## Build, upload, deploy lambda dependencies layer
+
+
+lbd-deploy-all-func: lbd-build-source ## Deploy all lambda funtcions
+	bash ./bin/lbd/deploy-lbd-all-func.sh
+
+
+lbd-ls-func: ## List all lambda functions in this project
+	bash ./bin/lbd/list-functions.sh
+
+
+lbd-info: ## Display Lambda Relative Info
+	bash ./bin/lbd/info-lbd.sh

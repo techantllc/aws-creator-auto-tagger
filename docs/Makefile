@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
-SPHINXPROJ    = tat_aws_creator_auto_tagger
+SPHINXPROJ    = tat_aws_creator_auto_tag
 SOURCEDIR     = source
 BUILDDIR      = build
 

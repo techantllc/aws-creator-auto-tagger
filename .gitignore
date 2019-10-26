@@ -1,7 +1,7 @@
 # User Settings
-tat_aws_creator_auto_tagger_venv/
-tat_aws_creator_auto_tagger.egg-info/
-tat_aws_creator_auto_tagger-*/
+tat_aws_creator_auto_tag_venv/
+tat_aws_creator_auto_tag.egg-info/
+tat_aws_creator_auto_tag-*/
 
 
 # Byte-compiled / optimized / DLL files

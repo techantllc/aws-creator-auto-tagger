@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=source
 set BUILDDIR=build
-set SPHINXPROJ=tat_aws_creator_auto_tagger
+set SPHINXPROJ=tat_aws_creator_auto_tag
 
 if "%1" == "" goto help
 

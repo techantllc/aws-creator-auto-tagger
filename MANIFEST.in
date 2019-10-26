@@ -5,6 +5,6 @@
 
 include *.txt
 include *.rst
-recursive-include tat_aws_creator_auto_tagger *.*
+recursive-include tat_aws_creator_auto_tag *.*
 recursive-exclude *.pyc
 recursive-exclude *.pyo
