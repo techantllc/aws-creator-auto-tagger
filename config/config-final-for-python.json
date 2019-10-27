@@ -1,0 +1,17 @@
+{
+    "METADATA": {},
+    "PROJECT_NAME": "tat_aws_creator_auto_tag",
+    "PROJECT_NAME_SLUG": "tat-aws-creator-auto-tag",
+    "STAGE": "dev",
+    "ENVIRONMENT_NAME": "tat-aws-creator-auto-tag-dev",
+    "AWS_ACCOUNT_ID": "698408381665",
+    "AWS_REGION": "us-east-1",
+    "AWS_PROFILE_FOR_DEPLOY": "tat_sanhe",
+    "AWS_PROFILE_FOR_BOTO3": "tat_sanhe",
+    "S3_BUCKET_FOR_DEPLOY": "tech-ant-for-everything",
+    "S3_BUCKET_FOR_CLOUDTRAIL": "tech-ant-api-call-log",
+    "LAMBDA_ENV_VAR_PREFIX": "TAT_AWS_CREATOR_AUTO_TAG_",
+    "IAM_ROLE_NAME": "lbd-admin-role",
+    "IAM_ROLE_ARN": "arn:aws:iam::698408381665:role/lbd-admin-role",
+    "LATEST_LAYER_ARN": "arn:aws:lambda:us-east-1:698408381665:layer:tat_aws_creator_auto_tag:1"
+}

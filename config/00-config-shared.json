@@ -1,5 +1,9 @@
 {
     "PROJECT_NAME": "tat_aws_creator_auto_tag",
+    "AWS_ACCOUNT_ID": "698408381665",
+    "AWS_REGION": "us-east-1",
     "AWS_PROFILE_FOR_DEPLOY": "tat_sanhe",
-    "S3_BUCKET_FOR_DEPLOY": "tech-ant-for-everything"
+    "S3_BUCKET_FOR_DEPLOY": "tech-ant-for-everything",
+    "S3_BUCKET_FOR_CLOUDTRAIL": "tech-ant-api-call-log",
+    "IAM_ROLE_NAME": "lbd-admin-role"
 }

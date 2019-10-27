@@ -3,28 +3,34 @@
 # https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/
 
 service:
-  name: tat-aws-creator-auto-tag
+  name: "${file(./config/config-final-for-python.json):PROJECT_NAME_SLUG}"
 
 provider:
   name: aws
   runtime: python3.6
-  stage: dev
-  region: us-east-1
-  profile: tat_sanhe
+  stage: "${file(./config/config-final-for-python.json):STAGE}"
+  region: "${file(./config/config-final-for-python.json):AWS_REGION}"
+  profile: "${file(./config/config-final-for-python.json):AWS_PROFILE_FOR_DEPLOY}"
   memorySize: 128
   timeout: 3
   deploymentBucket:
-    name: tech-ant-for-everything
+    name: "${file(./config/config-final-for-python.json):S3_BUCKET_FOR_DEPLOY}"
   deploymentPrefix: serverless
-  role: "<put-your-own-lambda-iam-role-arn-here>"
+  role: "${file(./config/config-final-for-python.json):IAM_ROLE_ARN}"
   versionFunctions: false
 
 package:
   artifact: ./build/lambda/source.zip
 
 functions:
-  my_func:
-    handler: tat_aws_creator_auto_tag.handlers.my_func.handler
-    description:
+  tagResource:
+    handler: tat_aws_creator_auto_tag.handlers.tag_resource.handler
     layers:
-      - "<put-your-own-lambda-layers-arn-here>"
+      - "${file(./config/config-final-for-python.json):LATEST_LAYER_ARN}"
+    events:
+      - s3
+          bucket: "${file(./config/config-final-for-python.json):S3_BUCKET_FOR_CLOUDTRAIL}"
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: "AWSLogs/${file(./config/config-final-for-python.json):AWS_ACCOUNT_ID}/CloudTrail/${file(./config/config-final-for-python.json):AWS_REGION}/"
+            - suffix: .gz
