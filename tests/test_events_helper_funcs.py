@@ -68,7 +68,7 @@ class TestRecordParser(object):
 
     def test_get_create_time(self):
         assert events.RecordParser.get_create_time(self.create_iam_user_event_record) \
-               == "2019-10-26 22:07:04"
+               == "2019-10-26 22:07:04+00:00"
 
 
 if __name__ == "__main__":
