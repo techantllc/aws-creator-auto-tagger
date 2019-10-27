@@ -17,6 +17,7 @@ except:
 
 from dateutil import parser
 from troposphere_mate.canned.iam import AWSServiceName
+from .logger import log
 
 
 class EventType:
@@ -140,13 +141,53 @@ class RecordParser:
         return True
 
 
+class BaseAwsResource(object):
+    @classmethod
+    def tag_it(cls, record, boto_client, verbose):
+        """
+        :type record: dict
+        :type boto_client: typing.Any
+        :type verbose: bool
+        """
+        raise NotImplementedError
+
+
+class ResourceNotSupportedError(Exception): pass
+
+
 @six.add_metaclass(EventMeta)
 class EventName:
     _accessor_mapper = dict()
 
     @classmethod
-    def get_tag_it_method(cls, event_source_name, event_name):
-        return cls._accessor_mapper[event_source_name][event_name]
+    def get_event_source_name(cls, record):
+        return record["eventSource"].replace(".amazonaws.com", "")
+
+    @classmethod
+    def get_event_name(cls, record):
+        return record["eventName"]
+
+    @classmethod
+    def get_resource_class(cls, event_source_name, event_name):
+        """
+        :type event_source_name: str
+        :type event_name: str
+
+        :rtype: BaseAwsResource
+        """
+        try:
+            return cls._accessor_mapper[event_source_name][event_name]
+        except KeyError:
+            msg = "{}.{} are not supported yet!".format(event_source_name, event_name)
+            raise ResourceNotSupportedError(msg)
+
+    @classmethod
+    def tag_it(cls, record, boto_ses, verbose=True):
+        event_source_name = cls.get_event_source_name(record)
+        event_name = cls.get_event_name(record)
+        ResourceClass = cls.get_resource_class(event_source_name, event_name)
+        boto_client = boto_ses.client(event_source_name)
+        ResourceClass.tag_it(record, boto_client, verbose=verbose)
 
     class IAM:
         _service_name = AWSServiceName.aws_Identity_and_Access_Management_IAM
@@ -159,7 +200,7 @@ class EventName:
                 return record["responseElements"]["user"]["arn"]
 
             @classmethod
-            def tag_it(cls, record, iam_client):
+            def tag_it(cls, record, iam_client, verbose=True):
                 user_arn = cls.get_created_iam_user_arn(record)
                 username = user_arn.split("/")[-1]
 
@@ -175,9 +216,13 @@ class EventName:
                         UserName=username,
                         Tags=dict_tags_to_list_tags(updated_tags)
                     )
+                    msg = "Successfully tagged {}.".format(user_arn)
+                    log(msg, verbose=verbose)
                     return res_tag_user
                 else:
-                    return None
+                    msg = "No need to update tag for {}.".format(user_arn)
+                    log(msg, verbose=verbose)
+                    return {}
 
         class Role:
             _event_name = "CreateRole"
@@ -187,7 +232,7 @@ class EventName:
                 return record["responseElements"]["role"]["arn"]
 
             @classmethod
-            def tag_it(cls, record, iam_client):
+            def tag_it(cls, record, iam_client, verbose=True):
                 role_arn = cls.get_created_iam_role_arn(record)
                 rolename = role_arn.split("/")[-1]
 
@@ -203,9 +248,13 @@ class EventName:
                         RoleName=rolename,
                         Tags=dict_tags_to_list_tags(updated_tags)
                     )
+                    msg = "Successfully tagged {}.".format(role_arn)
+                    log(msg, verbose=verbose)
                     return res_tag_role
                 else:
-                    return None
+                    msg = "No need to update tag for {}.".format(role_arn)
+                    log(msg, verbose=verbose)
+                    return {}
 
     class S3:
         _service_name = AWSServiceName.amazon_Simple_Storage_Service_Amazon_S3
@@ -218,7 +267,7 @@ class EventName:
                 return record["requestParameters"]["bucketName"]
 
             @classmethod
-            def tag_it(cls, record, s3_client):
+            def tag_it(cls, record, s3_client, verbose=True):
                 bucketname = cls.get_bucket_name(record)
                 try:  # tagset may not exists
                     res_get_bucket_tagging = s3_client.get_bucket_tagging(Bucket=bucketname)
@@ -237,6 +286,10 @@ class EventName:
                             "TagSet": dict_tags_to_list_tags(updated_tags),
                         },
                     )
+                    msg = "Successfully tagged arn:aws:s3:::{}.".format(bucketname)
+                    log(msg, verbose=verbose)
                     return res_put_bucket_tagging
                 else:
-                    return None
+                    msg = "No need to update tag for arn:aws:s3:::{}.".format(bucketname)
+                    log(msg, verbose=verbose)
+                    return {}

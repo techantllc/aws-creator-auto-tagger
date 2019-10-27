@@ -1,9 +1,5 @@
 {
     "PROJECT_NAME": "tat_aws_creator_auto_tag",
-    "AWS_PROFILE_FOR_DOC_DEPLOY": "an-aws-project-name",
-    "S3_BUCKET_FOR_DOC_HOST": "a-s3-bucket-name",
-    
     "AWS_PROFILE_FOR_DEPLOY": "tat_sanhe",
     "S3_BUCKET_FOR_DEPLOY": "tech-ant-for-everything"
-    
 }
