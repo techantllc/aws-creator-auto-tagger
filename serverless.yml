@@ -28,9 +28,10 @@ functions:
     layers:
       - "${file(./config/config-final-for-python.json):LATEST_LAYER_ARN}"
     events:
-      - s3
+      - s3:
           bucket: "${file(./config/config-final-for-python.json):S3_BUCKET_FOR_CLOUDTRAIL}"
           event: s3:ObjectCreated:*
           rules:
             - prefix: "AWSLogs/${file(./config/config-final-for-python.json):AWS_ACCOUNT_ID}/CloudTrail/${file(./config/config-final-for-python.json):AWS_REGION}/"
             - suffix: .gz
+          existing: true
