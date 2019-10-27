@@ -12,7 +12,7 @@ provider:
   region: "${file(./config/config-final-for-python.json):AWS_REGION}"
   profile: "${file(./config/config-final-for-python.json):AWS_PROFILE_FOR_DEPLOY}"
   memorySize: 128
-  timeout: 3
+  timeout: 30
   deploymentBucket:
     name: "${file(./config/config-final-for-python.json):S3_BUCKET_FOR_DEPLOY}"
   deploymentPrefix: serverless
