@@ -48,3 +48,11 @@ Deploy from local
 1. update your config in ./config/00-config-shared.json
 2. setup your python virtualenv, ``make up`` -> ``make req-dev``
 3. bash ./devops/deploy.sh
+
+
+Diagram
+------------------------------------------------------------------------------
+
+.. raw:: html
+
+    <iframe width="700" height="400" style="border:none;"src="https://arcentry.com/app/embed.html?id=6bf1689e-a746-4b11-92af-d4d2942cdb5b"></iframe>
