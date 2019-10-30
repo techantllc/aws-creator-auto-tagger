@@ -53,10 +53,4 @@ Deploy from local
 Diagram
 ------------------------------------------------------------------------------
 
-.. raw:: html
-    :file: ./diagram.html
-
-
-.. raw:: html
-
-    <iframe frameborder="0" style="width:100%;height:151px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Untitled%20Diagram.drawio#RjZPfb5wwDMf%2FGh5Xkct63B4L%2Fam11aRO6vqYIwaiJhglucLtr19ymANUVRo8EH%2B%2BjmMcO%2BGFGe6s6JonlKCTTSqHhF8nmw1jlzx8IjmOZPuDjaC2SpLTDF7UXyCYEj0oCW7l6BG1V90alti2UPoVE9Ziv3arUK9P7UQNn8BLKfRn%2Bqqkb0a6u0xnfg%2BqbqaTWUqKEZMzAdcIif0C8ZuEFxbRjyszFKBj8aa6jPtuv1DPiVlo%2Ff9sKPeve2P65%2Baxf%2Fvtt39%2B7trjN4ryIfSBfpiS9cepAnjwWrVQnAucJjyvsPUFarQnHx7e23hqXlshFay0bXrFebbQrpUNgRS2QW%2FRxjLlldJ6GS%2FLGNsG7rzFd1go1ekJihSuAUnpfID1Klzao9iD%2FoVOUfg9eo9m4XClVR0Fj12ggqwyZAXhgLzxRgeb0R9SO7LNZFNV4pHCdWM5KjXEPPJwv10UzVDHUbgQvft%2BYcHhwZbwUMZ88mCOq7WX40GjmwiJwvDlFbNz44SJAzTg7TG40IYdtRrNWkZmPzduthtRs%2BjZiQkalfocd%2B6msKCGmsy5cU%2FaYvz5zT8%3D"></iframe>
+- https://arcentry.com/app/embed.html?id=7e19602e-85ec-49d0-9bc7-3d97307ce6ab
